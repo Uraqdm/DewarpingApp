@@ -20,6 +20,7 @@ namespace DewarpingApp
             }
 
             app.UseRouting();
+            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {
