@@ -21,6 +21,7 @@ namespace DewarpingApp.Controllers
 
         public IActionResult Index() => View();
 
+        [HttpPost]
         public IActionResult AddFile(IFormFile file)
         {
             if(file != null)
