@@ -21,6 +21,8 @@ namespace DewarpingApp.Controllers
 
         public IActionResult Index() => View();
 
+        public IActionResult AddFile() => View();
+
         [HttpPost]
         public IActionResult AddFile(IFormFile file)
         {
@@ -28,9 +30,8 @@ namespace DewarpingApp.Controllers
             {
                 fileService.SaveFileAsync(file, environment);
                 context.ImageFiles.Add(new Domain.Models.ImageFile { Name = file.FileName, Path = $"/Files/{file.FileName}" });
-                RedirectToAction("Index");
             }
-            return View();
+            return RedirectToAction("Index");
         }
     }
 }
