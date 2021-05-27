@@ -8,7 +8,7 @@ namespace DewarpingApp.Service
     {
         public async void SaveFileAsync(IFormFile file, IWebHostEnvironment environment)
         {
-            using var fileStream = new FileStream(environment.WebRootPath + "/Files/", FileMode.Create);
+            using var fileStream = new FileStream(environment.WebRootPath + "/Files/" + file.FileName, FileMode.Create);
             await file.CopyToAsync(fileStream);
         }
     }
