@@ -1,4 +1,5 @@
 ﻿using DewarpingApp.Context;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DewarpingApp.Controllers
@@ -13,5 +14,15 @@ namespace DewarpingApp.Controllers
         }
 
         public IActionResult Index() => View();
+
+        public IActionResult AddFile(IFormFile file)
+        {
+            if(file != null)
+            {
+                context.ImageFiles.Add(new Domain.Models.ImageFile { Name = file.FileName, Path = $"/Files/{file.FileName}" });
+                RedirectToAction("Index");
+            }
+            return View();
+        }
     }
 }
