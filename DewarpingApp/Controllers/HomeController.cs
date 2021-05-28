@@ -19,7 +19,7 @@ namespace DewarpingApp.Controllers
             this.fileService = fileService;
         }
 
-        public IActionResult Index() => View();
+        public IActionResult Index() => View(context.ImageFiles);
 
         public IActionResult AddFile() => View();
 
