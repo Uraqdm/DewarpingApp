@@ -1,0 +1,8 @@
+﻿@model DewarpingApp.Domain.Models.ImageFile
+
+<div>
+    <h3>@Model.Name</h3>
+    <img src="@Model.Path" alt="@Model.Name" width="300" height="300"/>
+    <p>@Model.Path</p>
+    <a href="@Model.Path" download="@Model.Name">Download</a>
+</div>

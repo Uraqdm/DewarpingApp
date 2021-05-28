@@ -3,6 +3,7 @@ using DewarpingApp.Service;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace DewarpingApp.Controllers
 {
@@ -33,6 +34,11 @@ namespace DewarpingApp.Controllers
                 context.SaveChanges();
             }
             return RedirectToAction("Index");
+        }
+
+        public IActionResult MoreInfo(int id)
+        {
+            return View(context.ImageFiles.Where(x => x.Id == id).FirstOrDefault());
         }
     }
 }
