@@ -1,6 +1,8 @@
 ﻿using DewarpingApp.Domain.Models;
+using IronPython.Hosting;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Scripting.Hosting;
 using System.IO;
 
 namespace DewarpingApp.Service
@@ -13,9 +15,15 @@ namespace DewarpingApp.Service
             await file.CopyToAsync(fileStream);
         }
 
-        public async void TransformFile(ImageFile file)
+        public ImageFile TransformFile(ImageFile file)
         {
-            throw new System.Exception();
+            ScriptEngine engine = Python.CreateEngine();
+            ScriptScope scope = engine.CreateScope();
+
+            scope.SetVariable("imageFile", file);
+            engine.ExecuteFile("TransformImage.py", scope);
+
+            return scope.GetVariable<ImageFile>("imageFile");
         }
     }
 }
