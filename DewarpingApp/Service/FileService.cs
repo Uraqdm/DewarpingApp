@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using DewarpingApp.Domain.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 
@@ -12,7 +13,7 @@ namespace DewarpingApp.Service
             await file.CopyToAsync(fileStream);
         }
 
-        public async void TransformFile(IFormFile file)
+        public async void TransformFile(ImageFile file)
         {
             throw new System.Exception();
         }
