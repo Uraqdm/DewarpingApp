@@ -11,5 +11,10 @@ namespace DewarpingApp.Service
             using var fileStream = new FileStream(environment.WebRootPath + "/Files/" + file.FileName, FileMode.Create);
             await file.CopyToAsync(fileStream);
         }
+
+        public async void TransformFile(IFormFile file)
+        {
+            throw new System.Exception();
+        }
     }
 }
