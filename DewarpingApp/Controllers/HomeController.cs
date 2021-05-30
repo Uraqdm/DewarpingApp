@@ -11,13 +11,11 @@ namespace DewarpingApp.Controllers
     {
         private readonly AppDbContext context;
         private readonly IWebHostEnvironment environment;
-        private readonly FileService fileService;
 
-        public HomeController(AppDbContext context, IWebHostEnvironment environment, FileService fileService)
+        public HomeController(AppDbContext context, IWebHostEnvironment environment)
         {
             this.context = context;
             this.environment = environment;
-            this.fileService = fileService;
         }
 
         public IActionResult Index() => View(context.ImageFiles);
@@ -29,7 +27,7 @@ namespace DewarpingApp.Controllers
         {
             if(file != null)
             {
-                fileService.SaveFileAsync(file, environment);
+                FileService.SaveAndTransformFileAsync(file, environment);
                 context.ImageFiles.Add(new Domain.Models.ImageFile { Name = file.FileName, Path = $"/Files/{file.FileName}" });
                 context.SaveChanges();
             }
