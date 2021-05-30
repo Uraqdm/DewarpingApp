@@ -14,16 +14,5 @@ namespace DewarpingApp.Service
             using var fileStream = new FileStream(environment.WebRootPath + "/Files/" + file.FileName, FileMode.Create);
             await file.CopyToAsync(fileStream);
         }
-
-        public ImageFile TransformFile(ImageFile file)
-        {
-            ScriptEngine engine = Python.CreateEngine();
-            ScriptScope scope = engine.CreateScope();
-
-            scope.SetVariable("imageFile", file);
-            engine.ExecuteFile("TransformImage.py", scope);
-
-            return scope.GetVariable<ImageFile>("imageFile");
-        }
     }
 }
