@@ -41,10 +41,10 @@ namespace DewarpingApp.Controllers
             return View(context.ImageFiles.Where(x => x.Id == id).FirstOrDefault());
         }
 
-        [HttpPost]
-        public void TransformImageFile(int id)
-        {
-            fileService.TransformFile(context.ImageFiles.Where(x => x.Id == id).FirstOrDefault())
-        }
+        //[HttpPost]
+        //public void TransformImageFile(int id)
+        //{
+        //    fileService.TransformFile(context.ImageFiles.Where(x => x.Id == id).FirstOrDefault());
+        //}
     }
 }
