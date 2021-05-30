@@ -1,8 +1,5 @@
-﻿using DewarpingApp.Domain.Models;
-using IronPython.Hosting;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Scripting.Hosting;
 using System.IO;
 
 namespace DewarpingApp.Service
