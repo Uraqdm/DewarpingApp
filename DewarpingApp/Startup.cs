@@ -22,7 +22,6 @@ namespace DewarpingApp
         {
             services.AddControllersWithViews();
 
-            services.AddTransient<FileService>();
             services.AddDbContext<AppDbContext>(opts => opts.UseSqlServer(Configuration.GetConnectionString("Default")));
         }
 
