@@ -245,7 +245,7 @@ namespace DewarpingApp.Service
 
         }
 
-        private static Point NewPoint(Point AtualPoint, Int32 Width, Int32 Height, double Aplitude, Boolean inverse)
+        private static Point NewPoint(Point AtualPoint, int Width, int Height, double Aplitude, bool inverse)
         {
             Point uP = AtualPoint;
 
