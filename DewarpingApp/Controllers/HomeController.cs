@@ -27,8 +27,8 @@ namespace DewarpingApp.Controllers
         {
             if(file != null)
             {
-                FileService.SaveAndTransformFileAsync(file, environment);
-                context.ImageFiles.Add(new Domain.Models.ImageFile { Name = file.FileName, Path = $"/Files/{file.FileName}" });
+                var img = FileService.SaveAndTransformFileAsync(file, environment);
+                context.ImageFiles.Add(img);
                 context.SaveChanges();
             }
             return RedirectToAction("Index");
@@ -38,11 +38,5 @@ namespace DewarpingApp.Controllers
         {
             return View(context.ImageFiles.Where(x => x.Id == id).FirstOrDefault());
         }
-
-        //[HttpPost]
-        //public void TransformImageFile(int id)
-        //{
-        //    fileService.TransformFile(context.ImageFiles.Where(x => x.Id == id).FirstOrDefault());
-        //}
     }
 }
