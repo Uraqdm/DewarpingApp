@@ -21,14 +21,14 @@ namespace DewarpingApp.Service
 
             Bitmap img = (Bitmap)Image.FromStream(fileStream);
 
-            Bitmap result = BarrelDistortion(img, true, Color.White);
+            Bitmap result = BarrelDistortion(img, Color.White);
             string distortedPath = environment.WebRootPath + "\\Files\\" + "dst_" + file.FileName;
             result.Save(distortedPath, ImageFormat.Jpeg);
 
             return new ImageFile() { DistortedPath = distortedPath, Path = path, Name = file.Name };
         }
 
-        private static Bitmap BarrelDistortion(Bitmap sourceImage, bool autoCrop, Color backgroundColor)
+        private static Bitmap BarrelDistortion(Bitmap sourceImage, Color backgroundColor, double factor = -0.1, bool autoCrop = true)
         {
             Bitmap StartImage = null;
             BitmapData srcBitmapData = null;
@@ -36,8 +36,6 @@ namespace DewarpingApp.Service
             byte[] dstPixels = null;
             Bitmap NewImage = null;
             BitmapData dstBitmapData = null;
-
-            double factor = -0.5;
 
             try
             {
