@@ -23,7 +23,7 @@ namespace DewarpingApp.Service
 
             Bitmap result = BarrelDistortion(img, true, Color.White);
             string distortedPath = environment.WebRootPath + "/Files/" + "dst_" + file.FileName;
-            result.Save(path, ImageFormat.Jpeg);
+            result.Save(distortedPath, ImageFormat.Jpeg);
 
             return new ImageFile() { DistortedPath = distortedPath, Path = path, Name = file.Name };
         }
