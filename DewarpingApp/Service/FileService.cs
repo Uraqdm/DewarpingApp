@@ -14,18 +14,18 @@ namespace DewarpingApp.Service
     {
         public static ImageFile SaveAndTransformFileAsync(IFormFile file, IWebHostEnvironment environment)
         {
-            string path = environment.WebRootPath + "\\Files\\" + file.FileName;
+            string localPath = environment.WebRootPath + "\\Files\\";
 
-            using var fileStream = new FileStream(path, FileMode.Create);
+            using var fileStream = new FileStream(localPath + file.FileName, FileMode.Create);
             file.CopyTo(fileStream);
 
             Bitmap img = (Bitmap)Image.FromStream(fileStream);
 
             Bitmap result = BarrelDistortion(img, Color.White);
-            string distortedPath = environment.WebRootPath + "\\Files\\" + "dst_" + file.FileName;
+            string distortedPath = localPath + "dst_" + file.FileName;
             result.Save(distortedPath, ImageFormat.Jpeg);
 
-            return new ImageFile() { DistortedPath = distortedPath, Path = path, Name = file.Name };
+            return new ImageFile() { DistortedPath = "\\Files\\" + "dst_" + file.FileName, Path = "\\Files\\" + file.FileName, Name = file.Name };
         }
 
         private static Bitmap BarrelDistortion(Bitmap sourceImage, Color backgroundColor, double factor = -0.25, bool autoCrop = true)
