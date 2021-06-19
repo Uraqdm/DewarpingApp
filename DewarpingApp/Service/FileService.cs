@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using DewarpingApp.Domain.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Drawing;
@@ -11,7 +12,7 @@ namespace DewarpingApp.Service
 {
     public static class FileService
     {
-        public static string SaveAndTransformFileAsync(IFormFile file, IWebHostEnvironment environment)
+        public static ImageFile SaveAndTransformFileAsync(IFormFile file, IWebHostEnvironment environment)
         {
             string path = environment.WebRootPath + "/Files/" + file.FileName;
 
@@ -21,10 +22,10 @@ namespace DewarpingApp.Service
             Bitmap img = (Bitmap)Image.FromStream(fileStream);
 
             Bitmap result = BarrelDistortion(img, true, Color.White);
-            path = environment.WebRootPath + "/Files/" + "dst_" + file.FileName;
+            string distortedPath = environment.WebRootPath + "/Files/" + "dst_" + file.FileName;
             result.Save(path, ImageFormat.Jpeg);
 
-            return path;
+            return new ImageFile() { DistortedPath = distortedPath, Path = path, Name = file.Name };
         }
 
         private static Bitmap BarrelDistortion(Bitmap sourceImage, bool autoCrop, Color backgroundColor)
