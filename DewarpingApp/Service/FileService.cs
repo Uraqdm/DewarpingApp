@@ -28,7 +28,7 @@ namespace DewarpingApp.Service
             return new ImageFile() { DistortedPath = distortedPath, Path = path, Name = file.Name };
         }
 
-        private static Bitmap BarrelDistortion(Bitmap sourceImage, Color backgroundColor, double factor = -0.1, bool autoCrop = true)
+        private static Bitmap BarrelDistortion(Bitmap sourceImage, Color backgroundColor, double factor = -0.25, bool autoCrop = true)
         {
             Bitmap StartImage = null;
             BitmapData srcBitmapData = null;
